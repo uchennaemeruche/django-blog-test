@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block title %} Welcome to my python blog{% endblock %}
+
+{% load static %}
+{% block content %}
+
+
+
+<header class="masthead" style="background-image: url('{% static "website/bg.jpg" %}');">
+    <!-- <img src="{% static 'website/bg.jpg' %}" alt=""> -->
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="site-heading">
+                    <h1>Python Blog</h1>
+                    <span class="subheading">A Blog made with python love</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-7">
+            {% for post in posts %}
+            <div class="post-preview">
+                {% if post.image %}
+                <img src="{{ post.image.url }}" alt="{{ post.image.url }}" style="max-width:600px; width:600px">
+                {% else %}
+                <img src="{% static 'website/bg.jpg' %}" alt="no image selected" style="max-width:600px; width:600px">
+                {% endif %}
+                <a href="posts/{{post.id}}">
+                    <h2 class="post-title">{{post.title}}</h2>
+                    <h3 class="post-subtitle">{{post.body}}</h3>
+                </a>
+                <p class="post-meta">
+                    Posted by
+                    <a href="#!">{{post.author}}</a>
+                    {{post.date_created}}
+                </p>
+            </div>
+            <!-- Divider-->
+            <hr class="my-4" />
+            {% endfor%}
+            <p>There are {{count}} available posts</p>
+            <p>Your ip address is : {{ip.address}} - {{ip.is_valid}}</p>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

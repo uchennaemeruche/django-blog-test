@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %} Python blog| Create POST{% endblock %}
+
+{% load static %}
+{% block content %}
+<header style="background-image: url('{% static "website/bg.jpg" %}');">
+    <!-- <img src="{% static 'website/bg.jpg' %}" alt=""> -->
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="site-heading my-4">
+                    <h1>Python Blog</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div>{{post.id}}</div>
+
+<h1>{{post.title}}</h1> <a type="submit" href="/posts/delete/{{post.id}}">Delete post</a>
+<p>{{ post.body}}</p>
+<img src="{{ post.image.url }}" alt="{{ post.image }}">
+
+
+<p>{{count}}</p>
+{% endblock %}
